@@ -132,3 +132,6 @@ name = "textureslime"
 
 [[example]]
 name = "complexplanet"
+
+[[example]]
+name = "simplex"

@@ -11,7 +11,7 @@
 extern crate noise;
 extern crate test;
 
-use noise::{NoiseFn, OpenSimplex, Perlin, SuperSimplex, Value, Worley};
+use noise::{NoiseFn, OpenSimplex, Perlin, Simplex, SuperSimplex, Value, Worley};
 use test::{black_box, Bencher};
 
 #[bench]
@@ -30,6 +30,24 @@ fn bench_open_simplex3(bencher: &mut Bencher) {
 fn bench_open_simplex4(bencher: &mut Bencher) {
     let open_simplex = OpenSimplex::new();
     bencher.iter(|| open_simplex.get(black_box([42.0f64, 37.0, 26.0, 128.0])));
+}
+
+#[bench]
+fn bench_simplex2(bencher: &mut Bencher) {
+    let simplex = Simplex::new();
+    bencher.iter(|| simplex.get(black_box([42.0f64, 37.0])));
+}
+
+#[bench]
+fn bench_simplex3(bencher: &mut Bencher) {
+    let simplex = Simplex::new();
+    bencher.iter(|| simplex.get(black_box([42.0f64, 37.0, 26.0])));
+}
+
+#[bench]
+fn bench_simplex4(bencher: &mut Bencher) {
+    let simplex = Simplex::new();
+    bencher.iter(|| simplex.get(black_box([42.0f64, 37.0, 26.0, 128.0])));
 }
 
 #[bench]
@@ -147,6 +165,42 @@ fn bench_open_simplex4_64x64(bencher: &mut Bencher) {
         for y in 0i8..64 {
             for x in 0i8..64 {
                 black_box(open_simplex.get([x as f64, y as f64, x as f64, y as f64]));
+            }
+        }
+    });
+}
+
+#[bench]
+fn bench_simplex2_64x64(bencher: &mut Bencher) {
+    let simplex = Simplex::new();
+    bencher.iter(|| {
+        for y in 0i8..64 {
+            for x in 0i8..64 {
+                black_box(simplex.get([x as f64, y as f64]));
+            }
+        }
+    });
+}
+
+#[bench]
+fn bench_simplex3_64x64(bencher: &mut Bencher) {
+    let simplex = Simplex::new();
+    bencher.iter(|| {
+        for y in 0i8..64 {
+            for x in 0i8..64 {
+                black_box(simplex.get([x as f64, y as f64, x as f64]));
+            }
+        }
+    });
+}
+
+#[bench]
+fn bench_simplex4_64x64(bencher: &mut Bencher) {
+    let simplex = Simplex::new();
+    bencher.iter(|| {
+        for y in 0i8..64 {
+            for x in 0i8..64 {
+                black_box(simplex.get([x as f64, y as f64, x as f64, y as f64]));
             }
         }
     });
