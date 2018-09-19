@@ -12,8 +12,6 @@
 #![cfg_attr(feature = "cargo-clippy", allow(inline_always))]
 #![deny(missing_copy_implementations)]
 
-#[cfg(feature = "image")]
-extern crate image;
 extern crate rand;
 
 pub use math::{Point2, Point3, Point4};
@@ -23,4 +21,3 @@ mod gradient;
 mod math;
 mod noise_fns;
 mod permutationtable;
-pub mod utils;
