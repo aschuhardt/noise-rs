@@ -16,8 +16,10 @@ extern crate rand;
 
 pub use math::{Point2, Point3, Point4};
 pub use noise_fns::*;
+pub use noise_fns as fns;
 
-mod gradient;
+pub mod noise_fns;
+
 mod math;
-mod noise_fns;
+mod gradient;
 mod permutationtable;
